@@ -332,7 +332,7 @@ export class SimpleFlatBuffers
     {
         let v = this.bb[this.position];
         this.position++;
-        return v << 16 >> 16;
+        return v << 24 >> 24;
     }
 
     readUint16(): number

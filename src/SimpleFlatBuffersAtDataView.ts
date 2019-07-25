@@ -8,6 +8,21 @@ export class SimpleFlatBuffersAtDataView extends SimpleFlatBuffers
         super(bb);
         this.dataview = new DataView(this.bb.buffer);
     }
+
+    writeInt8(value: number)
+    {
+        this.prep(1);
+        this.dataview.setInt8(this.position, value);
+        this.position++;
+        return this;
+    }
+    readInt8()
+    {
+        let v = this.dataview.getInt8(this.position);
+        this.position++;
+        return v;
+    }
+
     writeInt16(value: number)
     {
         this.prep(2);
