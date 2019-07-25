@@ -371,7 +371,7 @@ export class SimpleFlatBuffers
         return float64[0];
     }
 
-    private prep(size: number)
+    protected prep(size: number)
     {
         if (this.bb.length - this.position < size)
             this.grow();
@@ -379,7 +379,7 @@ export class SimpleFlatBuffers
         return this;
     }
 
-    private grow()
+    protected grow()
     {
         let nbb = new Uint8Array(this.bb.length << 1);
         nbb.set(this.bb);

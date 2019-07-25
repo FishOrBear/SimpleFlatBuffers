@@ -1,5 +1,9 @@
 Simplified version of 'Google /flatbuffers',Implement with 'typescript'.
 
+
+The performance of SimpleFlatBuffersAtDataView seems to be better.
+https://v8.dev/blog/dataview
+
 `npm i simpleflatbuffers`
 
 Example:

@@ -11,6 +11,9 @@
         "/dist/SimpleFlatBuffers.js",
         "/dist/SimpleFlatBuffers.js.map",
         "/dist/SimpleFlatBuffers.d.ts",
+        "/dist/SimpleFlatBuffersAtDataView.js",
+        "/dist/SimpleFlatBuffersAtDataView.js.map",
+        "/dist/SimpleFlatBuffersAtDataView.d.ts",
         "README.txt",
         "package.json"
     ],

@@ -31,6 +31,6 @@ export declare class SimpleFlatBuffers {
     readUint32(): number;
     readFloat32(): number;
     readFloat64(): number;
-    private prep;
-    private grow;
+    protected prep(size: number): this;
+    protected grow(): this;
 }
