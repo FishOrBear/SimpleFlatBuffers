@@ -1,0 +1,25 @@
+{
+    "name": "simpleflatbuffers",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./dist/SimpleFlatBuffers.js",
+    "types": "./dist/SimpleFlatBuffers.d.ts",
+    "scripts": {
+        "build": "tsc"
+    },
+    "files": [
+        "/dist/SimpleFlatBuffers.js",
+        "/dist/SimpleFlatBuffers.js.map",
+        "/dist/SimpleFlatBuffers.d.ts",
+        "README.txt",
+        "package.json"
+    ],
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^12.6.8",
+        "ts-node": "^8.3.0",
+        "typescript": "^3.5.3"
+    }
+}

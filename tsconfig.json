@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "sourceMap": true,
+        "module": "commonjs",
+        "target": "esnext",
+        "outDir": "dist",
+        "declaration": true,
+        "noLib": false,
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "downlevelIteration": true,
+        "lib": [
+            "esnext",
+            "dom"
+        ],
+        "types": [
+            "node",
+        ],
+    },
+    "include": [
+        "./src/**/*",
+        // "./__test__/**/*"
+    ]
+}
