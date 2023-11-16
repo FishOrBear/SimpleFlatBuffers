@@ -1,11 +1,10 @@
 import { SimpleFlatBuffersAtDataView } from "../src/SimpleFlatBuffersAtDataView";
 import { SimpleFlatBuffers } from "../src/SimpleFlatBuffers";
 
-
-let count = 1e5;
+let count = 1e3;
 function test1(f: SimpleFlatBuffers)
 {
-
+    var start = performance.now();
     for (let i = 0; i < count; i++)
     {
         f.writeBool(true)
@@ -39,10 +38,56 @@ function test1(f: SimpleFlatBuffers)
         let str = f.readString();//-
     }
 
+    return performance.now() - start;
+}
+
+function test3()
+{
+    var start = performance.now();
+    let arr = [];
+    for (let i = 0; i < count; i++)
+    {
+        arr.push(true)
+        arr.push(false)
+        arr.push(-2)
+        arr.push(-23)
+        arr.push(-2)
+        arr.push(-2)
+        arr.push(5)
+        arr.push(-6)
+        arr.push(-1.1)
+        arr.push(-1.2)
+        arr.push("SimpleFlatBuffers");
+    }
+
+    let str = JSON.stringify(arr)
+    let arr2 = JSON.parse(str)
+
+    let index = 0;
+
+    for (let i = 0; i < count; i++)
+    {
+        let b1 = arr2[index++];//-
+        let b2 = arr2[index++];//-
+        let u8 = arr2[index++];//-
+        let i8 = arr2[index++];//-
+        let u16 = arr2[index++];//-
+        let i16 = arr2[index++];//-
+        let u32 = arr2[index++];//-
+        let i32 = arr2[index++];//-
+        let f32 = arr2[index++];//-
+        let f64 = arr2[index++];//-
+        let str = arr2[index++];//-
+    }
+    return performance.now() - start;
 }
 
 
-let f = new SimpleFlatBuffersAtDataView();
-let f2 = new SimpleFlatBuffers();
-test1(f);//?.
-test1(f2);//?.
+for (let i = 0; i < 1; i++)
+{
+    let f = new SimpleFlatBuffersAtDataView();
+    let f2 = new SimpleFlatBuffers();
+    test1(f);//?.
+    test1(f2);//?.
+    test3()//?.
+}

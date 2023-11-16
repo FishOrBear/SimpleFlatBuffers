@@ -1,7 +1,10 @@
 import { SimpleFlatBuffers } from "./SimpleFlatBuffers";
 export declare class SimpleFlatBuffersAtDataView extends SimpleFlatBuffers {
+    bb: Uint8Array;
     dataview: DataView;
     constructor(bb?: Uint8Array);
+    writeInt8(value: number): this;
+    readInt8(): number;
     writeInt16(value: number): this;
     writeUint16(value: number): this;
     writeInt32(value: number): this;

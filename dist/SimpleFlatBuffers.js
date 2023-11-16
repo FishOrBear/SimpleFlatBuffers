@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SimpleFlatBuffers = exports.StringCount = void 0;
 const int32 = new Int32Array(2);
 const float32 = new Float32Array(int32.buffer);
 const float64 = new Float64Array(int32.buffer);
@@ -9,11 +10,12 @@ var StringCount;
     StringCount[StringCount["Uint8"] = 1] = "Uint8";
     StringCount[StringCount["Uint16"] = 2] = "Uint16";
     StringCount[StringCount["Uint32"] = 4] = "Uint32";
-})(StringCount = exports.StringCount || (exports.StringCount = {}));
+})(StringCount || (exports.StringCount = StringCount = {}));
 class SimpleFlatBuffers {
+    bb;
+    position = 0;
     constructor(bb = new Uint8Array(1024)) {
         this.bb = bb;
-        this.position = 0;
     }
     finish() {
         this.bb = this.bb.subarray(0, this.position);
@@ -25,6 +27,8 @@ class SimpleFlatBuffers {
         this.boolPosition = undefined;
         return this;
     }
+    boolPosition;
+    boolOffset;
     writeBool(d) {
         if (this.boolPosition !== undefined) {
             if (d)
@@ -252,7 +256,7 @@ class SimpleFlatBuffers {
     readInt8() {
         let v = this.bb[this.position];
         this.position++;
-        return v << 16 >> 16;
+        return v << 24 >> 24;
     }
     readUint16() {
         let v = this.bb[this.position] | this.bb[this.position + 1] << 8;

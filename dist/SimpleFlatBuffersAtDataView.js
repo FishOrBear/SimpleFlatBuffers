@@ -1,10 +1,25 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SimpleFlatBuffersAtDataView = void 0;
 const SimpleFlatBuffers_1 = require("./SimpleFlatBuffers");
 class SimpleFlatBuffersAtDataView extends SimpleFlatBuffers_1.SimpleFlatBuffers {
+    bb;
+    dataview;
     constructor(bb = new Uint8Array(8)) {
         super(bb);
+        this.bb = bb;
         this.dataview = new DataView(this.bb.buffer);
+    }
+    writeInt8(value) {
+        this.prep(1);
+        this.dataview.setInt8(this.position, value);
+        this.position++;
+        return this;
+    }
+    readInt8() {
+        let v = this.dataview.getInt8(this.position);
+        this.position++;
+        return v;
     }
     writeInt16(value) {
         this.prep(2);

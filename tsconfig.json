@@ -14,9 +14,7 @@
             "esnext",
             "dom"
         ],
-        "types": [
-            "node",
-        ],
+        "types": [],
     },
     "include": [
         "./src/**/*",

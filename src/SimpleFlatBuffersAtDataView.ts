@@ -3,7 +3,7 @@ import { SimpleFlatBuffers } from "./SimpleFlatBuffers";
 export class SimpleFlatBuffersAtDataView extends SimpleFlatBuffers
 {
     dataview: DataView;
-    constructor(bb = new Uint8Array(8))
+    constructor(public bb = new Uint8Array(8))
     {
         super(bb);
         this.dataview = new DataView(this.bb.buffer);
