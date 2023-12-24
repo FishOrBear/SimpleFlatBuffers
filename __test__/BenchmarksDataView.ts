@@ -79,6 +79,9 @@ function test3()
         let f64 = arr2[index++];//-
         let str = arr2[index++];//-
     }
+
+    let encode = new TextEncoder()
+    encode.encode(str);
     return performance.now() - start;
 }
 
@@ -87,7 +90,13 @@ for (let i = 0; i < 1; i++)
 {
     let f = new SimpleFlatBuffersAtDataView();
     let f2 = new SimpleFlatBuffers();
+    console.time()
     test1(f);//?.
+    console.timeEnd()
+    console.time()
     test1(f2);//?.
+    console.timeEnd()
+    console.time()
     test3()//?.
+    console.timeEnd()
 }
