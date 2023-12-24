@@ -12,9 +12,11 @@
         "downlevelIteration": true,
         "lib": [
             "esnext",
-            "dom"
+            "dom",
         ],
-        "types": [],
+        "types": [
+            "node"
+        ],
     },
     "include": [
         "./src/**/*",

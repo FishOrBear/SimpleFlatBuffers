@@ -1,5 +1,8 @@
 import { SimpleFlatBuffers } from "../src/SimpleFlatBuffers"
 
+
+//结论 使用nodejs的 decode 是没有意义的
+
 let count = 1e5;
 
 function test1()
