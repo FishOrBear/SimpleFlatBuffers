@@ -7,6 +7,7 @@ export declare class SimpleFlatBuffers {
     bb: Uint8Array;
     position: number;
     constructor(bb?: Uint8Array);
+    get buffer(): Uint8Array;
     finish(): this;
     reset(): this;
     private boolPosition;

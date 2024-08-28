@@ -17,6 +17,11 @@ export class SimpleFlatBuffers
     {
     }
 
+    get buffer()
+    {
+        return this.finish().bb;
+    }
+
     finish()
     {
         this.bb = this.bb.subarray(0, this.position);
@@ -145,6 +150,7 @@ export class SimpleFlatBuffers
     }
 
     /*
+    //在nodejs中 这个代码的性能比较高 但是在chrome中 这个性能很低2024/8/28依旧如此
     //In 'nodejs', the performance of this method is very high, but the performance of this method is very poor in the browser.
     //https://jsperf.com/nativeencodevsmanual
     //https://bugs.chromium.org/p/v8/issues/detail?id=4383
@@ -162,24 +168,27 @@ export class SimpleFlatBuffers
 
     writeString(s: string, stringCount = StringCount.Uint16)
     {
-        let op = this.position;
-
+        let startPos = this.position;
         let writeCountFuntion: Function;
+        let lengthBitCount = 1;
         switch (stringCount)
         {
             case StringCount.Uint8:
                 writeCountFuntion = this.writeUint8;
                 break;
             case StringCount.Uint16:
+                lengthBitCount = 2;
                 writeCountFuntion = this.writeUint16;
                 break;
             case StringCount.Uint32:
+                lengthBitCount = 4;
                 writeCountFuntion = this.writeUint32;
                 break;
             default:
                 break;
         }
         writeCountFuntion.call(this, 0);
+
         let i = 0;
         while (i < s.length)
         {
@@ -224,10 +233,10 @@ export class SimpleFlatBuffers
             }
         }
 
-        let np = this.position;
-        this.position = op;
-        writeCountFuntion.call(this, np - op - 2);
-        this.position = np;
+        let endPos = this.position;
+        this.position = startPos;
+        writeCountFuntion.call(this, endPos - startPos - lengthBitCount);
+        this.position = endPos;
         return this;
     }
 
